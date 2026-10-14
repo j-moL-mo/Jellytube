@@ -8,56 +8,64 @@
   <title>ClearTube</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       background: #101010;
       color: #f5f5f5;
       font-family: Arial, sans-serif;
     }
+
     header {
       position: sticky;
       top: 0;
       background: #101010;
       padding: 18px;
       border-bottom: 1px solid #303030;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
+
     .logo { font-size: 23px; font-weight: bold; }
     .logo span { color: #ff4545; }
+
     main { max-width: 700px; margin: auto; padding: 20px; }
-    .search { display: flex; gap: 8px; }
+
     input {
-      min-width: 0;
-      flex: 1;
-      padding: 13px;
+      width: 100%;
+      padding: 14px;
       border: 1px solid #444;
       border-radius: 10px;
       background: #202020;
       color: white;
       font-size: 16px;
+      margin-bottom: 10px;
     }
+
     button {
+      width: 100%;
       border: 0;
       border-radius: 10px;
-      padding: 12px 16px;
+      padding: 15px;
       background: #ff4545;
       color: white;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      margin: 5px 0;
     }
+
+    .secondary { background: #303030; }
+
     .panel {
-      margin-top: 24px;
-      padding: 20px;
+      margin-top: 22px;
+      padding: 18px;
       background: #1d1d1d;
       border-radius: 14px;
     }
-    h2 { font-size: 18px; }
+
+    h1 { font-size: 27px; }
+    h2 { font-size: 19px; }
     p { color: #bdbdbd; line-height: 1.5; }
-    .secondary { background: #333; }
-    .note { font-size: 13px; margin-top: 24px; }
+    .note { font-size: 12px; margin-top: 25px; }
   </style>
 </head>
 <body>
@@ -67,33 +75,35 @@
 
   <main>
     <h1>Watch what you want.</h1>
-    <p>No Shorts feed. No endless recommendations. Just a simpler starting point.</p>
-
-    <form class="search" id="searchForm">
-      <input id="query" type="search"
-        placeholder="Search YouTube..." required>
-      <button type="submit">Search</button>
-    </form>
+    <p>A simpler starting point for YouTube. No recommendation feed on this page.</p>
 
     <section class="panel">
-      <h2>Focused viewing</h2>
-      <p>Search for a video, then choose whether to watch it in YouTube.</p>
-      <button id="openYouTube">Open YouTube</button>
-      <button class="secondary" id="openSubscriptions">
-        My subscriptions
-      </button>
+      <h2>Search YouTube</h2>
+      <form id="searchForm">
+        <input id="query" type="search"
+          placeholder="What do you want to watch?" required>
+        <button type="submit">Search</button>
+      </form>
     </section>
 
     <section class="panel">
-      <h2>Your rules</h2>
-      <p>✓ No Shorts feed inside ClearTube</p>
-      <p>✓ No recommended-video feed on this page</p>
-      <p>✓ Search when you decide what to watch</p>
+      <h2>Your YouTube</h2>
+      <button id="openWatchLater">▶ Watch Later</button>
+      <button class="secondary" id="openSubscriptions">My subscriptions</button>
+      <button class="secondary" id="openYouTube">Open YouTube</button>
+    </section>
+
+    <section class="panel">
+      <h2>Focused viewing</h2>
+      <p>• No Shorts feed inside ClearTube</p>
+      <p>• No recommended-video feed on this page</p>
+      <p>• Search when you choose what to watch</p>
     </section>
 
     <p class="note">
       ClearTube is an independent website, not an official YouTube product.
-      YouTube controls what appears inside its own app.
+      YouTube controls its own app and website. You may need to sign in
+      to access your saved videos and subscriptions.
     </p>
   </main>
 
@@ -107,12 +117,18 @@
         encodeURIComponent(query);
     });
 
-    document.getElementById("openYouTube").addEventListener("click", function() {
-      window.location.href = "https://www.youtube.com/";
+    document.getElementById("openWatchLater").addEventListener("click", function() {
+      window.location.href =
+        "https://www.youtube.com/playlist?list=WL";
     });
 
     document.getElementById("openSubscriptions").addEventListener("click", function() {
-      window.location.href = "https://www.youtube.com/feed/subscriptions";
+      window.location.href =
+        "https://www.youtube.com/feed/subscriptions";
+    });
+
+    document.getElementById("openYouTube").addEventListener("click", function() {
+      window.location.href = "https://www.youtube.com/";
     });
   </script>
 </body>
